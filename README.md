@@ -1,6 +1,8 @@
 # CalMod
 CalMod is a modular BepInEx mod for The Black Grimoire: Cursebreaker.
 
+Inspired by and partially based on functionality from [Stack Size](https://www.nexusmods.com/theblackgrimoirecursebreaker/mods/1) by m0nster and [StackSize Updated](https://www.nexusmods.com/theblackgrimoirecursebreaker/mods/2) by skybro
+
 Do note that I don't intend on updating this for future versions of the game, I'm just making the source code publicly available so that others can modify, update or just learn from the code to make their own mods.
 
 ## Features
