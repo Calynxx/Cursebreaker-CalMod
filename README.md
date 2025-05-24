@@ -9,7 +9,7 @@ This also increases the stack limit of limited stackable items to the max value.
 ### - Setting the drop rates for all mob drops to 100% (disabled by default)
 (Except some rare instances like the barbarian ambusher/foragers, which have their drop tables and stats hardcoded when they are created)
 ### - Disabling the barbarian ambushes (disabled by default)
-Do note that some items can only be obtained as drops from the ambushers.
+This might not work anymore with the new barbarian ambush minigame. Also do note that some items can only be obtained as drops from the ambushers.
 
 ## Bugs/Quirks
 - **!!! Scrapping stacked items will only yield the scrap for 1 of that item and WILL CONSUME THE ENTIRE STACK !!!**
