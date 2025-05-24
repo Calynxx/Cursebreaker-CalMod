@@ -35,7 +35,7 @@ Then install it as per the instructions on [the BepInEx installation guide](http
 ## Installation
 - Make sure BepInEx is installed as above
 - Make a folder called CalMod inside Cursebreaker\BepInEx\plugins
-- Build the mod to generate the dll (probably gets generated into .\bin\Debug\netstandard2.1)
+- Download the latest version of the mod from the [releases page](https://github.com/Calynxx/Cursebreaker-CalMod/releases)
 - Place it into the new CalMod folder
 - Run the game to generate the config files (will be in Cursebreaker\BepInEx\config)
 - (OPTIONALLY) Install [BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager) to manage the configs in-game using a GUI
