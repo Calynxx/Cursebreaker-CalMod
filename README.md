@@ -3,8 +3,6 @@ CalMod is a modular BepInEx mod for The Black Grimoire: Cursebreaker.
 
 Inspired by and partially based on functionality from [Stack Size](https://www.nexusmods.com/theblackgrimoirecursebreaker/mods/1) by m0nster and [StackSize Updated](https://www.nexusmods.com/theblackgrimoirecursebreaker/mods/2) by skybro
 
-Do note that I don't intend on updating this for future versions of the game, I'm just making the source code publicly available so that others can modify, update or just learn from the code to make their own mods.
-
 ## Features
 ### - Making all items stackable (enabled by default)
 This also increases the stack limit of limited stackable items to the max value.
@@ -32,7 +30,6 @@ Then install it as per the instructions on [the BepInEx installation guide](http
 - Load up CalMod.sln in Visual Studio
 - Fix assembly references (probably under Solution Explorer -> CalMod -> Dependencies -> Assemblies or in CalMod.csproj in the HintPath tags)
   - You should be able to find all of the referenced dlls inside \steamapps\common\Cursebreaker\Cursebreaker_Data\Managed
-- Fix any references to obfuscated code, I've left comments in the files to give some help finding the right names (use a tool such as [dnSpy](https://github.com/dnSpy/dnSpy/releases))
 - You should be able to build once all references are fixed
 
 ## Installation
