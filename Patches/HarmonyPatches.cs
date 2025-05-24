@@ -8,7 +8,7 @@ namespace CalMod.Patches
         // To find its name you'll have to find the public List<Scr_ItemHandler.Item> under Scr_ItemHandler, 
         // then search through methods that reference it until you find the one that loads the items list from XML,
         // it starts by clearing the all the lists then does Resources.Load("XML\Items"), you'll know it when you see it
-        [HarmonyPatch(typeof(Scr_ItemHandler), nameof(Scr_ItemHandler.ALCHICENLAP))]
+        [HarmonyPatch(typeof(ItemHandler), nameof(ItemHandler.LoadItems))]
         [HarmonyPostfix]
         static void ModifyStackLimitPatch()
         {
@@ -24,7 +24,7 @@ namespace CalMod.Patches
             }
         }
 
-        [HarmonyPatch(typeof(Scr_LootHandler), "Start")]
+        [HarmonyPatch(typeof(LootHandler), "Start")]
         [HarmonyPostfix]
         static void ModifyDropRatesPatch()
         {
@@ -40,9 +40,9 @@ namespace CalMod.Patches
             }
         }
 
-        [HarmonyPatch(typeof(Scr_OgreMountainBanditsHandler), "Start")]
+        [HarmonyPatch(typeof(OgreMountainBanditsHandler), "Start")]
         [HarmonyPostfix]
-        static void RemoveBanditAmbushPatch(Scr_OgreMountainBanditsHandler __instance)
+        static void RemoveBanditAmbushPatch(OgreMountainBanditsHandler __instance)
         {
             if (CalMod.BoundConfig.enableBanditMod.Value)
             {
@@ -51,7 +51,7 @@ namespace CalMod.Patches
                 // look inside Scr_OgreMountainBanditsHandler and there should be a public List<Scr_OgreMountainBanditsHandler.Gang>
                 // Basically this holds a list of the 3(?) or 4(?) bandit squads inside it and is only populated on initialisation,
                 // so once cleared the bandit ambushes are effectively removed
-                __instance.IDOINOHHNFF.Clear();
+                __instance.gangs.Clear();
             }
             else
             {

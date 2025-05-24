@@ -5,8 +5,8 @@ namespace CalMod
 {
     public static class ItemHandlerUtil
     {
-        private static Scr_ItemHandler _itemHandler;
-        private static List<Scr_ItemHandler.Item> _itemList;
+        private static ItemHandler _itemHandler;
+        private static List<ItemHandler.Item> _itemList;
         private static List<int> _stackablesList;
         private static int _maxStack;
 
@@ -18,17 +18,17 @@ namespace CalMod
                 return;
             }
 
-            _itemHandler = InstanceFinder.GetScrItemHandlerInstance();
-            _itemList = FieldFinder.GetItemList();
-            _stackablesList = FieldFinder.GetStackableItemList();
-            _maxStack = FieldFinder.GetItemMaxStackValue();
+            _itemHandler = ItemHandler.instance;
+            _itemList = _itemHandler.items;
+            _stackablesList = _itemHandler.stackableItemIds;
+            _maxStack = ItemHandler.MaxStack;
             if (_itemHandler == null || _itemList == null || _stackablesList == null || _maxStack == 0)
             {
                 CalMod.Logger.LogError("Instance or fields not initialised. Cannot set stack limit.");
                 return;
             }
 
-            foreach (Scr_ItemHandler.Item item in _itemList)
+            foreach (ItemHandler.Item item in _itemList)
             {
                 // Don't mess with the null item !
                 if (item.typeId == 0)
@@ -55,8 +55,8 @@ namespace CalMod
                 }
             }
 
-            FieldFinder.SetStackableItemList(_stackablesList);
-            FieldFinder.SetItemList( _itemList);
+            _itemHandler.stackableItemIds = _stackablesList;
+            _itemHandler.items = _itemList;
         }
     }
 }
