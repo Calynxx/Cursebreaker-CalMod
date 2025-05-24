@@ -25,13 +25,6 @@ You should download **the latest v5 version** from [the BepInEx releases page](h
 
 Then install it as per the instructions on [the BepInEx installation guide](https://docs.bepinex.dev/articles/user_guide/installation/index.html), or just extract the contents of the zip from the above link into the folder where Cursebreaker.exe is
 
-## Building
-- Clone the repo
-- Load up CalMod.sln in Visual Studio
-- Fix assembly references (probably under Solution Explorer -> CalMod -> Dependencies -> Assemblies or in CalMod.csproj in the HintPath tags)
-  - You should be able to find all of the referenced dlls inside \steamapps\common\Cursebreaker\Cursebreaker_Data\Managed
-- You should be able to build once all references are fixed
-
 ## Installation
 - Make sure BepInEx is installed as above
 - Make a folder called CalMod inside Cursebreaker\BepInEx\plugins
@@ -39,3 +32,10 @@ Then install it as per the instructions on [the BepInEx installation guide](http
 - Place it into the new CalMod folder
 - Run the game to generate the config files (will be in Cursebreaker\BepInEx\config)
 - (OPTIONALLY) Install [BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager) to manage the configs in-game using a GUI
+
+## Building
+- Clone the repo
+- Load up CalMod.sln in Visual Studio
+- Fix assembly references (probably under Solution Explorer -> CalMod -> Dependencies -> Assemblies or in CalMod.csproj in the HintPath tags)
+  - You should be able to find all of the referenced dlls inside \steamapps\common\Cursebreaker\Cursebreaker_Data\Managed
+- You should be able to build once all references are fixed
