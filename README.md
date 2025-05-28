@@ -5,15 +5,11 @@ Inspired by and partially based on functionality from [Stack Size](https://www.n
 
 ## Features
 ### - Making all items stackable (enabled by default)
-This also increases the stack limit of limited stackable items to the max value.
+This also increases the stack limit of limited stackable items to the max value. Now compatible with salvaging!
 ### - Setting the drop rates for all mob drops to 100% (disabled by default)
 (Except some rare instances like the barbarian ambusher/foragers, which have their drop tables and stats hardcoded when they are created)
-### - Disabling the barbarian ambushes (disabled by default)
-This might not work anymore with the new barbarian ambush minigame. Also do note that some items can only be obtained as drops from the ambushers.
 
 ## Bugs/Quirks
-- **!!! Scrapping stacked items will only yield the scrap for 1 of that item and WILL CONSUME THE ENTIRE STACK !!!**
-  - **!!! DON'T SCRAP STACKED ITEMS !!!**
 - When you disable the stack mod, items will stay stacked but they don't show the number in inventory. Shouldn't result in any loss of items.
 - Forge Fires spell from smithing trait will only smelt 1 ore from a stack, and leave the rest of the stack unsmelted. Won't result in any item losses but is a minor bummer.
 
