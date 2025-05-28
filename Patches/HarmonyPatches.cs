@@ -1,13 +1,12 @@
-﻿using HarmonyLib;
+﻿using Handlers;
+using HarmonyLib;
+using System.Collections.Generic;
+using System.Reflection.Emit;
 
 namespace CalMod.Patches
 {
     class HarmonyPatches
     {
-        // This obfuscated reference is kind of a pain, because Scr_ItemHandler doesn't have a Start method
-        // To find its name you'll have to find the public List<Scr_ItemHandler.Item> under Scr_ItemHandler, 
-        // then search through methods that reference it until you find the one that loads the items list from XML,
-        // it starts by clearing the all the lists then does Resources.Load("XML\Items"), you'll know it when you see it
         [HarmonyPatch(typeof(ItemHandler), nameof(ItemHandler.LoadItems))]
         [HarmonyPostfix]
         static void ModifyStackLimitPatch()
@@ -21,6 +20,37 @@ namespace CalMod.Patches
             {
                 CalMod.Logger.LogInfo("Stack limit mod is disabled. Stack limits unchanged.");
                 return;
+            }
+        }
+
+        [HarmonyPatch(typeof(SalvagingHandler), nameof(SalvagingHandler.SalvageItemSlot))]
+        [HarmonyTranspiler]
+        static IEnumerable<CodeInstruction> ModifyStackSalvagePatch(IEnumerable<CodeInstruction> instructions)
+        {
+            if (CalMod.BoundConfig.enableStackMod.Value)
+            {
+                CalMod.Logger.LogInfo("Patching stacked item salvage instructions...");
+
+                return new CodeMatcher(instructions)
+                .MatchForward(true,
+                    new CodeMatch(OpCodes.Ldloc_0),
+                    new CodeMatch(OpCodes.Ldfld, AccessTools.Field(typeof(ItemHandler.Item), nameof(ItemHandler.Item.level)))
+                )
+                .Repeat(matchAction: matcher =>
+                {
+                    matcher.Advance(1);
+                    matcher.InsertAndAdvance(
+                        new CodeInstruction(OpCodes.Ldarg_1),
+                        new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(UI_Inventory.ItemSlot), nameof(UI_Inventory.ItemSlot.itemAmount))),
+                        new CodeInstruction(OpCodes.Mul)
+                    );
+                })
+                .InstructionEnumeration();
+            }
+            else
+            {
+                CalMod.Logger.LogInfo("Stack limit mod is disabled. Salvage behaviour unchanged.");
+                return instructions;
             }
         }
 
@@ -40,7 +70,7 @@ namespace CalMod.Patches
             }
         }
 
-        [HarmonyPatch(typeof(OgreMountainBanditsHandler), "Start")]
+        /*[HarmonyPatch(typeof(OgreMountainBanditsHandler), "Start")]
         [HarmonyPostfix]
         static void RemoveBanditAmbushPatch(OgreMountainBanditsHandler __instance)
         {
@@ -58,6 +88,6 @@ namespace CalMod.Patches
                 CalMod.Logger.LogInfo("Bandit ambush mod is disabled. Ambushes unchanged.");
                 return;
             }
-        }
+        }*/
     }
 }
