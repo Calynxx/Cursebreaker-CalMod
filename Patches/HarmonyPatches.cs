@@ -70,6 +70,22 @@ namespace CalMod.Patches
             }
         }
 
+        [HarmonyPatch(typeof(AbilityHandler), nameof(AbilityHandler.ManualStart))]
+        [HarmonyPostfix]
+        static void ModifyRefineTimePatch()
+        {
+            if (CalMod.BoundConfig.enableFastRefining.Value)
+            {
+                CalMod.Logger.LogInfo("Patching refining abilities...");
+                AbilityHandlerUtil.ReduceTimeForRefineAbilties();
+            }
+            else
+            {
+                CalMod.Logger.LogInfo("Fast refining is disabled. Refining abilities unchanged.");
+                return;
+            }
+        }
+
         /*[HarmonyPatch(typeof(OgreMountainBanditsHandler), "Start")]
         [HarmonyPostfix]
         static void RemoveBanditAmbushPatch(OgreMountainBanditsHandler __instance)

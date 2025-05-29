@@ -13,6 +13,7 @@ namespace CalMod
         //public readonly ConfigEntry<bool> enableStorageMod; This was a feature from the mod this is based on but I didn't bother implementing it
         public readonly ConfigEntry<bool> enableDropRateMod;
         //public readonly ConfigEntry<bool> enableBanditMod;
+        public readonly ConfigEntry<bool> enableFastRefining;
 
         public ModConfig(ConfigFile cfg)
         {
@@ -22,6 +23,7 @@ namespace CalMod
             //enableStorageMod = cfg.Bind("All settings require loading from the main menu to take effect", "Increased bag capacity", false, "Increase the number of slots of all container items.");
             enableDropRateMod = cfg.Bind("All settings require loading from the main menu to take effect", "Set all NPC drop rates to 100%", false, "Sets the drop rates for all mobs to be 100%, can result in stupidly large numbers of items on the ground.");
             //enableBanditMod = cfg.Bind("All settings require loading from the main menu to take effect", "Disable barbarian ambushes", false, "Disables the barbarian ambushes in the Amarien's Mountains area. Note that there are some items that only they can drop.");
+            enableFastRefining = cfg.Bind("All settings require loading from the main menu to take effect", "Fast ore refining", true, "Makes ore refining (using the chisel and relevant mining traits from trainers) much faster.");
 
             ClearOrphanedEntries(cfg);
             cfg.Save();

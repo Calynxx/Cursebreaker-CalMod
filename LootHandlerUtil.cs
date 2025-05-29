@@ -12,7 +12,7 @@ namespace CalMod
         public static void SetAllDropRatesToOneHundredPercent()
         {
             _LootHandler = LootHandler.instance;
-            _dropTables = _LootHandler.dropTables;
+            _dropTables = _LootHandler?.dropTables;
             if (_LootHandler == null || _dropTables == null)
             {
                 CalMod.Logger.LogError("Instance or fields not initialised. Cannot set drop rates.");
