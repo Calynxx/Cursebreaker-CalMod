@@ -8,6 +8,8 @@ Inspired by and partially based on functionality from [Stack Size](https://www.n
 This also increases the stack limit of limited stackable items to the max value. Now compatible with salvaging!
 ### - Setting the drop rates for all mob drops to 100% (disabled by default)
 (Except some rare instances like the barbarian ambusher/foragers, which have their drop tables and stats hardcoded when they are created)
+### - Make ore refining much faster (enabled by default)
+Makes refining ore using a chisel and the relevant mining perk much faster (the sound and animation are unchanged so they stack up a little but it's probably fine)
 
 ## Bugs/Quirks
 - When you disable the stack mod, items will stay stacked but they don't show the number in inventory. Shouldn't result in any loss of items.
