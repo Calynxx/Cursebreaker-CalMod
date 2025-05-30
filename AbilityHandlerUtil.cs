@@ -10,7 +10,7 @@ namespace CalMod
         private static AbilityHandler _instance;
         private static List<AbilityHandler.Ability> _abilities;
 
-        public static void ReduceTimeForRefineAbilties()
+        public static void ReduceTimeForRefineAbilities()
         {
             _instance = AbilityHandler.instance;
             _abilities = _instance?.abilities;
@@ -24,6 +24,52 @@ namespace CalMod
             foreach (var ability in _abilities)
             {
                 if (ability.name.Contains("Refine", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    ability.attackDelay = 0.5f;
+                    ability.attackTime = 1f;
+                }
+            }
+
+            _instance.abilities = _abilities;
+        }
+
+        public static void ReduceTimeForFilletAbilities()
+        {
+            _instance = AbilityHandler.instance;
+            _abilities = _instance?.abilities;
+
+            if (_instance == null || _abilities == null)
+            {
+                CalMod.Logger.LogError("Instance or fields not initialised. Cannot modify abilities.");
+                return;
+            }
+
+            foreach (var ability in _abilities)
+            {
+                if (ability.name.Contains("Fillet", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    ability.attackDelay = 0.5f;
+                    ability.attackTime = 1f;
+                }
+            }
+
+            _instance.abilities = _abilities;
+        }
+
+        public static void ReduceTimeForLogSplitAbilities()
+        {
+            _instance = AbilityHandler.instance;
+            _abilities = _instance?.abilities;
+
+            if (_instance == null || _abilities == null)
+            {
+                CalMod.Logger.LogError("Instance or fields not initialised. Cannot modify abilities.");
+                return;
+            }
+
+            foreach (var ability in _abilities)
+            {
+                if (ability.name.Contains("Split", StringComparison.InvariantCultureIgnoreCase))
                 {
                     ability.attackDelay = 0.5f;
                     ability.attackTime = 1f;

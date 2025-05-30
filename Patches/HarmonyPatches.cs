@@ -1,5 +1,6 @@
 ﻿using Handlers;
 using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 
@@ -72,17 +73,89 @@ namespace CalMod.Patches
 
         [HarmonyPatch(typeof(AbilityHandler), nameof(AbilityHandler.ManualStart))]
         [HarmonyPostfix]
-        static void ModifyRefineTimePatch()
+        static void ModifyAbilitiesPatch()
         {
             if (CalMod.BoundConfig.enableFastRefining.Value)
             {
                 CalMod.Logger.LogInfo("Patching refining abilities...");
-                AbilityHandlerUtil.ReduceTimeForRefineAbilties();
+                AbilityHandlerUtil.ReduceTimeForRefineAbilities();
             }
             else
             {
                 CalMod.Logger.LogInfo("Fast refining is disabled. Refining abilities unchanged.");
                 return;
+            }
+
+            if (CalMod.BoundConfig.enableFastFilleting.Value)
+            {
+                CalMod.Logger.LogInfo("Patching fillet abilities...");
+                AbilityHandlerUtil.ReduceTimeForFilletAbilities();
+            }
+            else
+            {
+                CalMod.Logger.LogInfo("Fast fillet is disabled. Fillet abilities unchanged.");
+                return;
+            }
+
+            if (CalMod.BoundConfig.enableFastLogSplitting.Value)
+            {
+                CalMod.Logger.LogInfo("Patching log split abilities...");
+                AbilityHandlerUtil.ReduceTimeForLogSplitAbilities();
+            }
+            else
+            {
+                CalMod.Logger.LogInfo("Fast log splitting is disabled. Log split abilities unchanged.");
+                return;
+            }
+        }
+
+        [HarmonyPatch(typeof(UI_Crafting), "Craft", new Type[] { typeof(object[]) })]
+        [HarmonyTranspiler]
+        static IEnumerable<CodeInstruction> ModifyCraftPatch(IEnumerable<CodeInstruction> instructions)
+        {
+            if (CalMod.BoundConfig.enableFastCrafting.Value)
+            {
+                CalMod.Logger.LogInfo("Patching crafting instructions...");
+                return new CodeMatcher(instructions)
+                .MatchForward(false,
+                    new CodeMatch(OpCodes.Ldc_R4, 1f),
+                    new CodeMatch(OpCodes.Stfld, AccessTools.Field(typeof(UI_Crafting), nameof(UI_Crafting.craftingTimer)))
+                )
+                .SetAndAdvance(OpCodes.Ldc_R4, 0.5f)
+                .MatchForward(false,
+                    new CodeMatch(OpCodes.Ldc_R4, 1f),
+                    new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(UI_HUD), nameof(UI_HUD.ActivateActionTimer)))
+                )
+                .SetAndAdvance(OpCodes.Ldc_R4, 0.5f)
+                .InstructionEnumeration();
+            }
+            else
+            {
+                CalMod.Logger.LogInfo("Fast crafting is disabled. Craft behaviour unchanged.");
+                return instructions;
+            }
+        }
+
+        [HarmonyPatch(typeof(UI_Crafting), "Update")]
+        [HarmonyTranspiler]
+        static IEnumerable<CodeInstruction> ModifyCraftUpdatePatch(IEnumerable<CodeInstruction> instructions)
+        {
+            if (CalMod.BoundConfig.enableFastCrafting.Value)
+            {
+                CalMod.Logger.LogInfo("Patching crafting update instructions...");
+                return new CodeMatcher(instructions)
+                .MatchForward(false,
+                    new CodeMatch(OpCodes.Ldarg_0),
+                    new CodeMatch(OpCodes.Ldc_R4, 1f),
+                    new CodeMatch(OpCodes.Stfld, AccessTools.Field(typeof(UI_Crafting), nameof(UI_Crafting.craftingTimer)))
+                )
+                .RemoveInstructions(3)
+                .InstructionEnumeration();
+            }
+            else
+            {
+                CalMod.Logger.LogInfo("Fast crafting is disabled. Craft update behaviour unchanged.");
+                return instructions;
             }
         }
 
