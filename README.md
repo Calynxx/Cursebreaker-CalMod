@@ -8,13 +8,18 @@ Inspired by and partially based on functionality from [Stack Size](https://www.n
 This also increases the stack limit of limited stackable items to the max value. Now compatible with salvaging!
 ### - Setting the drop rates for all mob drops to 100% (disabled by default)
 (Except some rare instances like the barbarian ambusher/foragers, which have their drop tables and stats hardcoded when they are created)
+### - Faster Crafting (enabled by default)
+Make crafting items using workbenches faster. (includes smithing, cooking, etc)
 ### - Make ore refining much faster (enabled by default)
-Makes refining ore using a chisel and the relevant mining perk much faster (the sound and animation are unchanged so they stack up a little but it's probably fine)
+Makes ore refining (using the chisel and relevant mining traits from trainers) much faster.
+### - Make fish filleting much faster (enabled by default)
+Makes filleting fish (using the gutting knife and relevant fishing traits from trainers) much faster.
+### - Make log splitting much faster (enabled by default)
+Makes log splitting (using the splitting axe and relevant woodsman traits from trainers) much faster.
 
 ## Bugs/Quirks
 - When you disable the stack mod, items will stay stacked but they don't show the number in inventory. Shouldn't result in any loss of items.
 - Forge Fires spell from smithing trait will only smelt 1 ore from a stack, and leave the rest of the stack unsmelted. Won't result in any item losses but is a minor bummer.
-
 
 ## Installing BepInEx
 Before you can build the mod or install it, you'll need to install BepInEx
