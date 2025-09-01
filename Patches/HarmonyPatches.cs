@@ -159,6 +159,13 @@ namespace CalMod.Patches
             }
         }
 
+        [HarmonyPatch(typeof(PlayerLevels), nameof(PlayerLevels.AddXp))]
+        [HarmonyPrefix]
+        static void MultiplyExpPatch(SkillsHandler.SkillType t, ref float amount)
+        {
+            amount *= CalMod.BoundConfig.globalExperienceMultiplier.Value;
+        }
+
         /*[HarmonyPatch(typeof(OgreMountainBanditsHandler), "Start")]
         [HarmonyPostfix]
         static void RemoveBanditAmbushPatch(OgreMountainBanditsHandler __instance)

@@ -17,6 +17,7 @@ namespace CalMod
         public readonly ConfigEntry<bool> enableFastFilleting;
         public readonly ConfigEntry<bool> enableFastLogSplitting;
         public readonly ConfigEntry<bool> enableFastCrafting;
+        public readonly ConfigEntry<float> globalExperienceMultiplier;
 
         public ModConfig(ConfigFile cfg)
         {
@@ -30,6 +31,7 @@ namespace CalMod
             enableFastFilleting = cfg.Bind("Requires loading from the main menu to take effect", "Fast fish filleting", true, "Makes filleting fish (using the fillet knife and relevant fishing traits from trainers) much faster.");
             enableFastLogSplitting = cfg.Bind("Requires loading from the main menu to take effect", "Fast log splitting", true, "Makes log splitting (using the splitting axe and relevant woodsman traits from trainers) much faster.");
             enableFastCrafting = cfg.Bind("Requires restarting the game to take effect", "Fast crafting", true, "Make crafting items using workbenches faster.");
+            globalExperienceMultiplier = cfg.Bind("Can be changed at any time", "Global experience multiplier", 1f, new ConfigDescription("Multiplies all experience gained by this number", new AcceptableValueRange<float>(0f, 100f)));
 
             ClearOrphanedEntries(cfg);
             cfg.Save();
