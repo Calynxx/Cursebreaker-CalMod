@@ -8,6 +8,9 @@ Inspired by and partially based on functionality from [Stack Size](https://www.n
 This also increases the stack limit of limited stackable items to the max value. Now compatible with salvaging!
 ### - Setting the drop rates for all mob drops to 100% (disabled by default)
 (Except some rare instances like the barbarian ambusher/foragers, which have their drop tables and stats hardcoded when they are created)
+### - Multiplying the experience gained by the player (enabled by default, see line below)
+This defaults to 1x experience, but can be set to any number between 0 and 100 (decimals are fine too, like 1.5 or 10.25 or 0.34 etc. etc.)
+You can update this in real-time while you're playing, too! (configuration manager recommended for ease of use, see install instructions)
 ### - Faster Crafting (enabled by default)
 Make crafting items using workbenches faster. (includes smithing, cooking, etc)
 ### - Make ore refining much faster (enabled by default)
