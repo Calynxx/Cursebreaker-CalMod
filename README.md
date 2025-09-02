@@ -37,8 +37,8 @@ Then install it as per the instructions on [the BepInEx installation guide](http
 - Download the latest version of the mod from the [releases page](https://github.com/Calynxx/Cursebreaker-CalMod/releases)
 - Place it into the new CalMod folder
 - Run the game to generate the config files (will be in Cursebreaker\BepInEx\config)
-- (RECOMMENDED) Install [BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager) to manage the configs in-game using a GUI (will even allow you to change some settings without having to reload/restart)
-  - After you install the configuration manager go into `Cursebreaker\BepInEx\config\BepInEx.cfg` and change the line `HideManagerGameObject = false` to `HideManagerGameObject = true` or the configuration manager won't work
+- (RECOMMENDED, but optional) Install [BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager) to manage the configs in-game using a GUI (will even allow you to change some settings without having to restart your game)
+  - (IMPORTANT) After you install the configuration manager go into `Cursebreaker\BepInEx\config\BepInEx.cfg` and change the line `HideManagerGameObject = false` to `HideManagerGameObject = true` or the configuration manager won't work
 
 ## Building
 - Clone the repo
