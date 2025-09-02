@@ -10,7 +10,7 @@ This also increases the stack limit of limited stackable items to the max value.
 (Except some rare instances like the barbarian ambusher/foragers, which have their drop tables and stats hardcoded when they are created)
 ### - Multiplying the experience gained by the player (enabled by default, see line below)
 This defaults to 1x experience, but can be set to any number between 0 and 100 (decimals are fine too, like 1.5 or 10.25 or 0.34 etc. etc.)
-You can update this in real-time while you're playing, too! (configuration manager recommended for ease of use, see install instructions)
+You can even update this in real-time while you're playing without needing to reload or restart, if you install the configuration manager plugin! (see install instructions below)
 ### - Faster Crafting (enabled by default)
 Make crafting items using workbenches faster. (includes smithing, cooking, etc)
 ### - Make ore refining much faster (enabled by default)
@@ -37,7 +37,8 @@ Then install it as per the instructions on [the BepInEx installation guide](http
 - Download the latest version of the mod from the [releases page](https://github.com/Calynxx/Cursebreaker-CalMod/releases)
 - Place it into the new CalMod folder
 - Run the game to generate the config files (will be in Cursebreaker\BepInEx\config)
-- (OPTIONALLY) Install [BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager) to manage the configs in-game using a GUI
+- (RECOMMENDED) Install [BepInEx Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager) to manage the configs in-game using a GUI (will even allow you to change some settings without having to reload/restart)
+  - After you install the configuration manager go into `Cursebreaker\BepInEx\config\BepInEx.cfg` and change the line `HideManagerGameObject = false` to `HideManagerGameObject = true` or the configuration manager won't work
 
 ## Building
 - Clone the repo
